@@ -1,4 +1,5 @@
 import React, {Fragment, Component} from 'react'
+import './style.css'
 
 class TodoList extends Component{
     constructor(props){
@@ -10,7 +11,7 @@ class TodoList extends Component{
     }
 
     _onTextChange = (e) => {
-        console.log('---eee--', e.target.value)
+        // console.log('---eee--', e.target.value)
         this.setState({
             inputValue: e.target.value
         })
@@ -38,7 +39,12 @@ class TodoList extends Component{
         return (
             <Fragment>
                 <div>
-                    <input value={inputValue} onChange={this._onTextChange}/>
+                    <label htmlFor='insertArea'>输入内容：</label>
+                    <input 
+                    id='insertArea'
+                    className='input' 
+                    value={inputValue}
+                     onChange={this._onTextChange}/>
                     <button onClick={this._onSubmit}>提交</button>
                 </div>
                 <ul>
@@ -46,8 +52,9 @@ class TodoList extends Component{
                         list.map((item,index)=>{
                         return <li key={index} 
                                 onClick={()=>this._onItemDelte(index)}
+                                // 转义html标签
+                                dangerouslySetInnerHTML={{__html: item}}
                                 >
-                                {item}
                                 </li>
                         })
                     }
