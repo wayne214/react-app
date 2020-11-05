@@ -1,12 +1,25 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 
-const TodoList = () => {
+function TodoList(){
+    const [inputValue, setInputValue] = useState('')
+    const [list, setList] = useState(['study flutter'])
+
+    useEffect(()=>{
+        console.log('---in00', inputValue)
+    },[inputValue])
+
     return (
         <Fragment>
-            <div><input/><button>提交</button></div>
+            <div>
+                <input value={inputValue} onChange={e => setInputValue(e.target.value)}/>
+                <button>提交</button>
+            </div>
             <ul>
-                <li>学React Native</li>
-                <li>学React</li>
+                {
+                    list.map((item,index)=>{
+                    return <li>{item}</li>
+                    })
+                }
             </ul>
         </Fragment>
     )
