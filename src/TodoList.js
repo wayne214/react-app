@@ -1,28 +1,46 @@
-import React, {Fragment, useState, useEffect} from 'react'
+import React, {Fragment, Component} from 'react'
 
-function TodoList(){
-    const [inputValue, setInputValue] = useState('')
-    const [list, setList] = useState(['study flutter'])
+class TodoList extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            inputValue: '',
+            list: []
+        }
+    }
 
-    useEffect(()=>{
-        console.log('---in00', inputValue)
-    },[inputValue])
+    _onTextChange = (e) => {
+        console.log('---eee--', e.target.value)
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
 
-    return (
-        <Fragment>
-            <div>
-                <input value={inputValue} onChange={e => setInputValue(e.target.value)}/>
-                <button>提交</button>
-            </div>
-            <ul>
-                {
-                    list.map((item,index)=>{
-                    return <li>{item}</li>
-                    })
-                }
-            </ul>
-        </Fragment>
-    )
+    _onSubmit = ()=>{
+        const data = this.state.inputValue;
+        this.setState({
+            list: [...this.state.list, data]
+        })
+
+    }
+    render(){
+        const {inputValue, list} = this.state
+        return (
+            <Fragment>
+                <div>
+                    <input value={inputValue} onChange={this._onTextChange}/>
+                    <button onClick={this._onSubmit}>提交</button>
+                </div>
+                <ul>
+                    {
+                        list.map((item,index)=>{
+                        return <li>{item}</li>
+                        })
+                    }
+                </ul>
+            </Fragment>
+        )
+    }
 }
 
 export default TodoList;
