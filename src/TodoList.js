@@ -23,6 +23,16 @@ class TodoList extends Component{
         })
 
     }
+
+    _onItemDelte = (index) => {
+        // immutable 
+        // state 不允许我们有任何的改变
+        const temp = [...this.state.list]
+        temp.splice(index, 1)
+        this.setState({
+            list: temp
+        })
+    }
     render(){
         const {inputValue, list} = this.state
         return (
@@ -34,7 +44,11 @@ class TodoList extends Component{
                 <ul>
                     {
                         list.map((item,index)=>{
-                        return <li>{item}</li>
+                        return <li key={index} 
+                                onClick={()=>this._onItemDelte(index)}
+                                >
+                                {item}
+                                </li>
                         })
                     }
                 </ul>
