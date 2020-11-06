@@ -1,0 +1,12 @@
+1. state数据
+2.JSX模板
+3. 数据+ 模板 生成虚拟DOM（虚拟DOM就是一个JS对象， 用它来描述真实DOM）(损耗性能)
+['div'，{id: 'abc'},['span',{}, 'hello world']]
+4.用虚拟DOM的结构生成真实的DOM来显示
+<div id='abc'><span>hello world</span></div>
+5.state 发生变化
+6. 数据 + 模板 生成新的虚拟DOM (极大的提升了性能)
+['div'，{id: 'abc'},['span',{}, 'bye bye']]
+7.比较原始虚拟DOM和新的虚拟DOM的区别， 找出区别内容 (极大的提升了性能)
+Diff算法， difference(不同)
+8.直接操作DOM,改变对应区域的内容
