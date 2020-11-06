@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import './style.css'
+import TodoItem from "./TodoItem";
 
 class TodoList extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class TodoList extends Component {
     }
 
     _onItemDelte = (index) => {
-        // immutable 
+        // immutable
         // state 不允许我们有任何的改变
         // const temp = [...this.state.list]
         // temp.splice(index, 1)
@@ -49,8 +50,21 @@ class TodoList extends Component {
             }
         })
     }
+
+    getTodoItem = () => {
+        const { list } = this.state
+        return list.map((item, index) => {
+            return <TodoItem key={index} content={item} onItemClick={()=> this._onItemDelte(index)}/>
+            // return <li key={index}
+            //            onClick={() => this._onItemDelte(index)}
+            //     // 转义html标签
+            //            dangerouslySetInnerHTML={{ __html: item }}
+            // >
+            // </li>
+        })
+    }
     render() {
-        const { inputValue, list } = this.state
+        const { inputValue } = this.state
         return (
             <Fragment>
                 <div>
@@ -64,16 +78,7 @@ class TodoList extends Component {
                     <button onClick={this._onSubmit}>提交</button>
                 </div>
                 <ul>
-                    {
-                        list.map((item, index) => {
-                            return <li key={index}
-                                onClick={() => this._onItemDelte(index)}
-                                // 转义html标签
-                                dangerouslySetInnerHTML={{ __html: item }}
-                            >
-                            </li>
-                        })
-                    }
+                    {this.getTodoItem()}
                 </ul>
             </Fragment>
         )
