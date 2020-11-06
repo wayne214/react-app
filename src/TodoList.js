@@ -19,8 +19,15 @@ class TodoList extends Component {
 
     _onSubmit = () => {
         const data = this.state.inputValue;
-        this.setState({
-            list: [...this.state.list, data]
+        // this.setState({
+        //     list: [...this.state.list, data]
+        // })
+
+        this.setState(()=>{
+            return {
+                list: [...this.state.list, data],
+                inputValue: ''
+            }
         })
 
     }
