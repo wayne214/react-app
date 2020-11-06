@@ -2,6 +2,18 @@ import React, { Fragment, Component } from 'react'
 import './style.css'
 import TodoItem from "./TodoItem";
 
+/**
+ *
+ * React-----
+ * 声明式开发
+ * 可以与其他框架并存
+ * 组件化
+ * 单向数据流
+ * 视图层框架
+ * 函数式编程
+ *
+ * */
+
 class TodoList extends Component {
     constructor(props) {
         super(props);
