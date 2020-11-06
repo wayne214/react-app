@@ -18,14 +18,14 @@ class TodoList extends Component {
     }
 
     _onSubmit = () => {
-        const data = this.state.inputValue;
+        // const data = this.state.inputValue;
         // this.setState({
         //     list: [...this.state.list, data]
         // })
 
-        this.setState(()=>{
+        this.setState((prevState)=>{
             return {
-                list: [...this.state.list, data],
+                list: [...prevState.list, prevState.inputValue],
                 inputValue: ''
             }
         })
@@ -35,10 +35,18 @@ class TodoList extends Component {
     _onItemDelte = (index) => {
         // immutable 
         // state 不允许我们有任何的改变
-        const temp = [...this.state.list]
-        temp.splice(index, 1)
-        this.setState({
-            list: temp
+        // const temp = [...this.state.list]
+        // temp.splice(index, 1)
+        // this.setState({
+        //     list: temp
+        // })
+
+        this.setState((prevState)=>{
+            const list = [...prevState.list]
+            list.splice(index, 1)
+            return{
+                list
+            }
         })
     }
     render() {
