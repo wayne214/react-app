@@ -27,6 +27,7 @@ class TodoList extends Component {
 
     _onTextChange = (e) => {
         // console.log('---eee--', e.target.value)
+        const value = this.input.value;
         this.setState({
             inputValue: e.target.value
         })
@@ -88,7 +89,9 @@ class TodoList extends Component {
                         id='insertArea'
                         className='input'
                         value={inputValue}
-                        onChange={this._onTextChange} />
+                        onChange={this._onTextChange}
+                        ref={(input)=> {this.input = input}}
+                    />
                     <button onClick={this._onSubmit}>提交</button>
                 </div>
                 <ul>
