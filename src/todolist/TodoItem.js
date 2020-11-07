@@ -27,7 +27,7 @@ const TodoItem = ({content, test, onItemClick}) => {
 }
 // 属性校验
 TodoItem.propTypes = {
-    content: PropTypes.arrayOf(PropTypes.string, PropTypes.number),
+    content: PropTypes.oneOfType(PropTypes.string, PropTypes.number),
     onItemClick : PropTypes.func,
 }
 // 设置属性的默认值
