@@ -1,7 +1,8 @@
-import React, { Fragment, Component } from 'react'
+import React, {Fragment, Component} from 'react'
 import './style.css'
 import TodoItem from "./TodoItem";
 import Test from "./test";
+import axios from 'axios'
 
 /**
  *
@@ -25,6 +26,14 @@ class TodoList extends Component {
         }
     }
 
+    componentDidMount() {
+        axios.get('/api/todolist').then(() => {
+            alert('success')
+        }).catch(() => {
+            alert('error')
+        })
+    }
+
     _onTextChange = (e) => {
         // console.log('---eee--', e.target.value)
         const value = this.input.value;
@@ -39,7 +48,7 @@ class TodoList extends Component {
         //     list: [...this.state.list, data]
         // })
 
-        this.setState((prevState)=>{
+        this.setState((prevState) => {
             return {
                 list: [...prevState.list, prevState.inputValue],
                 inputValue: ''
@@ -57,19 +66,19 @@ class TodoList extends Component {
         //     list: temp
         // })
 
-        this.setState((prevState)=>{
+        this.setState((prevState) => {
             const list = [...prevState.list]
             list.splice(index, 1)
-            return{
+            return {
                 list
             }
         })
     }
 
     getTodoItem = () => {
-        const { list } = this.state
+        const {list} = this.state
         return list.map((item, index) => {
-            return <TodoItem key={index} content={item} onItemClick={()=> this._onItemDelte(index)}/>
+            return <TodoItem key={index} content={item} onItemClick={() => this._onItemDelte(index)}/>
             // return <li key={index}
             //            onClick={() => this._onItemDelte(index)}
             //     // 转义html标签
@@ -78,8 +87,9 @@ class TodoList extends Component {
             // </li>
         })
     }
+
     render() {
-        const { inputValue } = this.state
+        const {inputValue} = this.state
         return (
             <Fragment>
                 <div>
@@ -90,7 +100,9 @@ class TodoList extends Component {
                         className='input'
                         value={inputValue}
                         onChange={this._onTextChange}
-                        ref={(input)=> {this.input = input}}
+                        ref={(input) => {
+                            this.input = input
+                        }}
                     />
                     <button onClick={this._onSubmit}>提交</button>
                 </div>
@@ -98,7 +110,7 @@ class TodoList extends Component {
                     {this.getTodoItem()}
                 </ul>
 
-                <Test content={'inputValue'}/>
+                {/*<Test content={'inputValue'}/>*/}
             </Fragment>
         )
     }
