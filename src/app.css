@@ -48,10 +48,10 @@
 
 
 
-.fade-enter .fade-appear{
+.fade-enter {
     opacity: 0;
 }
-.fade-enter-active .fade-appear-active{
+.fade-enter-active {
     opacity: 1;
     transition: opacity 2s ease-in;
 }
