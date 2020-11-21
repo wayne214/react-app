@@ -4,10 +4,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import TodoList from './todolist/TodoList'
+import AntdTodoList from "./redux/ToduList";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AntdTodoList />
   </React.StrictMode>,
   document.getElementById('root')
 );
