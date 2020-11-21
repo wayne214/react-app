@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css';
 import { Input,Button, List, Avatar } from 'antd';
+import store from "../store";
 
 const data = [
     {
@@ -30,7 +31,8 @@ class AntdTodoList extends Component {
                     style={{width: 300, marginTop: 10}}
                     bordered={true}
                     itemLayout="horizontal"
-                    dataSource={data}
+                    // dataSource={data}
+                    dataSource={store.getState().list}
                     renderItem={item => (
                         <List.Item>
                             <List.Item.Meta
